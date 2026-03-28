@@ -1,0 +1,30 @@
+
+body {
+    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.poke-header {
+    background-color: #ffcb05; 
+    color: #2a75bb; 
+    border-bottom: 4px solid #2a75bb;
+}
+
+.poke-btn {
+    background-color: #2a75bb;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #1d5287;
+    transition: all 0.3s ease;
+}
+
+.poke-btn:hover {
+    background-color: #ffcb05;
+    color: #2a75bb;
+    border-color: #2a75bb;
+}
+
+.card-custom {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

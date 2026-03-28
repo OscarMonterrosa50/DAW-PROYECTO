@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial - Pokémon Bank</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-light poke-header">
+        <a class="navbar-brand font-weight-bold" href="dashboard.html">Volver al Inicio</a>
+        <a href="login.html" class="btn btn-danger">Salir</a>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Historial de Transacciones</h2>
+        <div class="table-responsive card-custom bg-white p-3">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>25/03/2026</td>
+                        <td>Depósito inicial</td>
+                        <td class="text-success">+$500.00</td>
+                        <td>Completado</td>
+                    </tr>
+                    <tr>
+                        <td>26/03/2026</td>
+                        <td>Pago: Internet</td>
+                        <td class="text-danger">-$35.00</td>
+                        <td>Completado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
