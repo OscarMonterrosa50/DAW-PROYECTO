@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (historyTableBody) {
         const user = getUserData();
         
-        // Si no hay usuario logueado, lo regresamos al login
+        // Redirección corregida a index.html
         if (!user) {
             window.location.href = 'index.html';
             return;
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         historyTableBody.innerHTML = ''; 
 
-        // Invertimos el arreglo para mostrar la transacción más reciente primero
         const reversedTransactions = [...user.transactions].reverse();
 
         reversedTransactions.forEach(t => {

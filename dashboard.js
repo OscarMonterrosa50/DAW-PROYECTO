@@ -130,22 +130,19 @@ function promptTransaction(type, isDeduction) {
     });
 }
 
-// ESTA ES LA PARTE QUE ARREGLA EL PROBLEMA
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Cargamos y aplicamos los datos del usuario logueado en la pantalla
     const activeUser = getUserData();
     if (activeUser) {
         document.getElementById('lblUserName').textContent = activeUser.name;
         document.getElementById('lblAccountNumber').textContent = activeUser.account;
         updateBalanceDisplay();
     } else {
-        // Si por alguna razón entra sin loguearse, lo mandamos al login
+        // ¡Aquí estaba el error! Ahora redirige a index.html
         window.location.href = 'index.html';
         return;
     }
 
-    // 2. Asignamos los clics a todos los botones
     document.getElementById('btnDeposit').addEventListener('click', () => promptTransaction('Depósito', false));
     
     document.getElementById('btnWithdraw').addEventListener('click', () => {

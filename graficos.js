@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (chartCanvas) {
         const user = getUserData();
         
-        // Si no hay usuario logueado, lo regresamos al login
+        // Redirección corregida a index.html
         if (!user) {
             window.location.href = 'index.html';
             return;
@@ -12,12 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const typeCounts = {};
 
-        // Contar cuántas transacciones hay de cada tipo
         user.transactions.forEach(t => {
             typeCounts[t.type] = (typeCounts[t.type] || 0) + 1;
         });
 
-        // Configurar y dibujar la gráfica con Chart.js
         new Chart(chartCanvas, {
             type: 'pie',
             data: {
@@ -26,13 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     label: 'Cantidad de Transacciones',
                     data: Object.values(typeCounts),
                     backgroundColor: [
-                        '#ffcb05', // Amarillo Pokémon
-                        '#2a75bb', // Azul Pokémon
-                        '#ff0000', // Rojo Pokéball
-                        '#4caf50', // Verde
-                        '#9c27b0', // Morado
-                        '#ff9800', // Naranja
-                        '#607d8b'  // Gris
+                        '#ffcb05', '#2a75bb', '#ff0000', '#4caf50', '#9c27b0', '#ff9800', '#607d8b'
                     ],
                     borderWidth: 1
                 }]
