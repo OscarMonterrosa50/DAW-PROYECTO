@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (chartCanvas) {
         const user = getUserData();
         
-        // Redirección corregida a index.html
+        
         if (!user) {
             window.location.href = 'index.html';
             return;

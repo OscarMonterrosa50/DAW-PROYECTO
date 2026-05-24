@@ -2,7 +2,9 @@ function updateBalanceDisplay() {
     const lblBalance = document.getElementById('lblBalance');
     if (lblBalance) {
         const user = getUserData();
-        lblBalance.textContent = `$${user.balance.toFixed(2)}`;
+        if (user) {
+            lblBalance.textContent = `$${user.balance.toFixed(2)}`;
+        }
     }
 }
 
@@ -21,6 +23,7 @@ function generatePDF(transaction) {
 
 function processTransaction(type, amount, isDeduction = false) {
     const user = getUserData();
+    if (!user) return false;
     const finalAmount = parseFloat(amount);
 
     if (isDeduction && user.balance < finalAmount) {
@@ -44,6 +47,7 @@ function processTransaction(type, amount, isDeduction = false) {
     }).then((willDownload) => {
         if (willDownload) generatePDF(newTransaction);
     });
+    return true;
 }
 
 function generateCardlessPDF(transaction, user) {
@@ -69,6 +73,7 @@ function generateCardlessPDF(transaction, user) {
 
 function processCardlessWithdrawal(amount) {
     const user = getUserData();
+    if (!user) return;
     const finalAmount = parseFloat(amount);
 
     if (user.balance < finalAmount) {
@@ -120,7 +125,7 @@ function processCardlessWithdrawal(amount) {
 function promptTransaction(type, isDeduction) {
     swal({
         title: type, text: `Ingrese el monto a depositar:`, content: "input",
-        buttons: { cancel: "Cancelar", confirm: "Aceptar" },
+        誠buttons: { cancel: "Cancelar", confirm: "Aceptar" },
     }).then(amount => {
         if (!amount || isNaN(amount) || amount <= 0) {
             if(amount) swal("Monto Inválido", "El monto debe ser un número mayor a cero", "error");
@@ -130,44 +135,54 @@ function promptTransaction(type, isDeduction) {
     });
 }
 
+function handlePayment(serviceName, amount) {
+    swal({
+        title: `Pago de ${serviceName}`, text: `¿Deseas pagar la factura de ${serviceName} por $${amount.toFixed(2)}?`,
+        icon: "warning", buttons: ["Cancelar", "Pagar"]
+    }).then((willPay) => {
+        if (willPay) processTransaction(`Pago: ${serviceName}`, amount, true);
+    });
+}
+
+// Inicialización controlada de la interfaz
 document.addEventListener('DOMContentLoaded', function() {
-    
     const activeUser = getUserData();
     if (activeUser) {
-        document.getElementById('lblUserName').textContent = activeUser.name;
-        document.getElementById('lblAccountNumber').textContent = activeUser.account;
+        const nameEl = document.getElementById('lblUserName');
+        const accEl = document.getElementById('lblAccountNumber');
+        if (nameEl) nameEl.textContent = activeUser.name;
+        if (accEl) accEl.textContent = activeUser.account;
         updateBalanceDisplay();
     } else {
-        // ¡Aquí estaba el error! Ahora redirige a index.html
         window.location.href = 'index.html';
         return;
     }
 
-    document.getElementById('btnDeposit').addEventListener('click', () => promptTransaction('Depósito', false));
+    const btnDeposit = document.getElementById('btnDeposit');
+    if (btnDeposit) btnDeposit.addEventListener('click', () => promptTransaction('Depósito', false));
     
-    document.getElementById('btnWithdraw').addEventListener('click', () => {
-        swal({
-            title: "Retiro sin tarjeta", text: "Ingrese el monto que desea retirar:", content: "input",
-            buttons: { cancel: "Cancelar", confirm: "Aceptar" },
-        }).then(amount => {
-            if (!amount || isNaN(amount) || amount <= 0) {
-                if(amount) swal("Monto Inválido", "El monto debe ser un número mayor a cero", "error");
-                return;
-            }
-            processCardlessWithdrawal(amount);
+    const btnWithdraw = document.getElementById('btnWithdraw');
+    if (btnWithdraw) {
+        btnWithdraw.addEventListener('click', () => {
+            swal({
+                title: "Retiro sin tarjeta", text: "Ingrese el monto que desea retirar:", content: "input",
+                buttons: { cancel: "Cancelar", confirm: "Aceptar" },
+            }).then(amount => {
+                if (!amount || isNaN(amount) || amount <= 0) {
+                    if(amount) swal("Monto Inválido", "El monto debe ser un número mayor a cero", "error");
+                    return;
+                }
+                processCardlessWithdrawal(amount);
+            });
         });
-    });
+    }
 
-    const handlePayment = (serviceName, amount) => {
-        swal({
-            title: `Pago de ${serviceName}`, text: `¿Deseas pagar la factura de ${serviceName} por $${amount.toFixed(2)}?`,
-            icon: "warning", buttons: ["Cancelar", "Pagar"]
-        }).then((willPay) => {
-            if (willPay) processTransaction(`Pago: ${serviceName}`, amount, true);
-        });
-    };
+    const btnPayEnergy = document.getElementById('btnPayEnergy');
+    if (btnPayEnergy) btnPayEnergy.addEventListener('click', () => handlePayment('Energía Eléctrica', 25.50));
 
-    document.getElementById('btnPayEnergy').addEventListener('click', () => handlePayment('Energía Eléctrica', 25.50));
-    document.getElementById('btnPayInternet').addEventListener('click', () => handlePayment('Internet', 35.00));
-    document.getElementById('btnPayWater').addEventListener('click', () => handlePayment('Telefonía y Agua', 15.75));
+    const btnPayInternet = document.getElementById('btnPayInternet');
+    if (btnPayInternet) btnPayInternet.addEventListener('click', () => handlePayment('Internet', 35.00));
+
+    const btnPayWater = document.getElementById('btnPayWater');
+    if (btnPayWater) btnPayWater.addEventListener('click', () => handlePayment('Telefonía y Agua', 15.75));
 });
