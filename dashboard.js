@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateBalanceDisplay();
     } else {
         // Si por alguna razón entra sin loguearse, lo mandamos al login
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
         return;
     }
 
