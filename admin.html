@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Pokémon Bank</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand font-weight-bold text-white" href="#">⚙️ Pokémon Bank - Administración</a>
+        <a href="login.html" class="btn btn-danger">Cerrar Sesión</a>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-custom p-4">
+                    <h3 class="text-center mb-4" style="color: #2a75bb;">Crear Nuevo Cliente</h3>
+                    
+                    <form id="adminForm">
+                        <div class="form-group">
+                            <label><strong>Nombre del Cliente</strong></label>
+                            <input type="text" class="form-control" id="newName" placeholder="Ej. Misty Waterflower" required>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>PIN de Acceso (4 dígitos)</strong></label>
+                            <input type="password" class="form-control" id="newPin" maxlength="4" placeholder="****" required>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Saldo Inicial ($)</strong></label>
+                            <input type="number" class="form-control" id="newBalance" min="0" step="0.01" placeholder="Ej. 100.00" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block mt-4 py-2">Registrar Usuario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="storage.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

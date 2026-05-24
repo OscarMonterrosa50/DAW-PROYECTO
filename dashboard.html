@@ -16,33 +16,31 @@
 
     <div class="container mt-5">
         <div class="alert alert-info card-custom">
-            <h4>Bienvenido, <strong>Ash Ketchum</strong></h4>
-            <p class="mb-0">Número de Cuenta: <strong>0987654321</strong></p>
+            <h4>Bienvenido, <strong id="lblUserName">Cargando...</strong></h4>
+            <p class="mb-1">Número de Cuenta: <strong id="lblAccountNumber">Cargando...</strong></p>
+            <p class="mb-0">Saldo Disponible: <strong id="lblBalance">$0.00</strong></p>
         </div>
 
         <h3 class="text-center my-4">¿Qué transacción deseas realizar?</h3>
 
         <div class="row">
-            <div class="col-md-4 mb-3">
-                <button class="btn poke-btn btn-block py-3">Depositar</button>
+            <div class="col-md-6 mb-3">
+                <button id="btnDeposit" class="btn poke-btn btn-block py-3">Depositar</button>
             </div>
-            <div class="col-md-4 mb-3">
-                <button class="btn poke-btn btn-block py-3">Retirar</button>
-            </div>
-            <div class="col-md-4 mb-3">
-                <button class="btn poke-btn btn-block py-3">Consultar Saldo</button>
+            <div class="col-md-6 mb-3">
+                <button id="btnWithdraw" class="btn poke-btn btn-block py-3">Retiro sin tarjeta</button>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4 mb-3">
-                <button class="btn btn-outline-secondary border-dark btn-block py-3">Pago: Energía Eléctrica</button>
+                <button id="btnPayEnergy" class="btn btn-outline-secondary border-dark btn-block py-3">Pago: Energía Eléctrica</button>
             </div>
             <div class="col-md-4 mb-3">
-                <button class="btn btn-outline-secondary border-dark btn-block py-3">Pago: Internet</button>
+                <button id="btnPayInternet" class="btn btn-outline-secondary border-dark btn-block py-3">Pago: Internet</button>
             </div>
             <div class="col-md-4 mb-3">
-                <button class="btn btn-outline-secondary border-dark btn-block py-3">Pago: Telefonía y Agua</button>
+                <button id="btnPayWater" class="btn btn-outline-secondary border-dark btn-block py-3">Pago: Telefonía y Agua</button>
             </div>
         </div>
 
@@ -58,5 +56,9 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="storage.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>

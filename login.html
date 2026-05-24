@@ -15,14 +15,17 @@
             <p class="text-muted">Cajero Automático (ATM)</p>
         </div>
         
-        <form action="dashboard.html" method="GET">
+        <form id="loginForm">
             <div class="form-group text-center">
                 <label for="pinInput"><strong>Ingrese su PIN (4 dígitos)</strong></label>
-                <input type="password" class="form-control text-center text-lg" id="pinInput" maxlength="4" pattern="\d{4}" placeholder="****" required>
+                <input type="password" class="form-control text-center text-lg" id="pinInput" maxlength="4" placeholder="****">
             </div>
             <button type="submit" class="btn poke-btn btn-block mt-4">Ingresar</button>
         </form>
     </div>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="storage.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
